@@ -1,0 +1,23 @@
+<?php
+
+/**
+ * @category    Ecomtech
+ * @package     Ecomtech_Savemypaquet
+ * @author      Savemypaquet ( http://www.savemypaquet.com)
+ * @developer   Ahmed MAHI <ahmed@mahi.ma> (http://ahmedmahi.com)
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+
+?>
+<?php echo $this->getChildHtml('oldavailable'); ?>
+<?php if ($this->getQuote()->getShippingAddress()->getPostcode()): ?>
+<script type="text/javascript">
+ //<![CDATA[
+ savemypaquet.AddSmpHtml();
+    smp_ch=$$("input[id*='s_method_savemypaquet_']:checked");
+    if (smp_ch.length != 0){
+             savemypaquet.savemypaquetCheck(smp_ch[0]);
+     }
+  //]]>
+ </script>
+<?php endif;?>

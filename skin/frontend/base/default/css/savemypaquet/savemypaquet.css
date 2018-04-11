@@ -1,0 +1,143 @@
+.smp_title {
+  height: 70px;
+}
+
+.smp_title .logo_smp {
+  width: 50%;
+  float: left;
+}
+
+.smp_title .logo_smp img {
+  width: 52%;
+}
+
+.smp_title span {
+  font-weight: normal;
+}
+
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.popup .popuptext {
+  visibility: hidden;
+  background-color: #555;
+  color: #fff;
+  border-radius: 6px;
+  padding: 8px 8px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: 0px;
+}
+
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+#checkout-shipping-method-load .sp-methods dd #savemypaquet_form label {
+  float: left;
+  background-color: #fff;
+  min-width: 0;
+  width: 30%;
+}
+
+#checkout-shipping-method-load .sp-methods dd #savemypaquet_form label.radio-inline {
+  width: 16%;
+}
+
+#checkout-shipping-method-load .sp-methods dd #savemypaquet_form input[type=text] {
+  width: 65%;
+  height: 20px;
+}
+
+#checkout-shipping-method-load .sp-methods dd #savemypaquet_form .form-group {
+  height: 32px;
+  overflow: hidden;
+}
+
+#checkout-shipping-method-load .sp-methods dd #savemypaquet_form .btn {
+  padding: 0px 8px;
+}
+
+.logo-smp {
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  font-size: 1.1em;
+}
+
+.logo-smp strong {
+  color: rgb(255, 73, 53);
+  font-weight: bold;
+}
+
+.logo-smp sup {
+  font-size: 0.7em;
+  bottom: 0.6em;
+}
+
+#checkout-shipping-method-load .sp-methods dd #savemypaquet_form .validation-advice {
+  margin: -18px -150px;
+  width: 150px;
+  position: absolute;
+}
+
+#checkout-shipping-method-load .sp-methods dd #savemypaquet_form .radio-inline .validation-advice {
+  margin: -5px -19px;
+  width: 192px;
+  position: absolute;
+}
+
+#savemypaquet_form .savemypaquet_info label {
+  width: 100% !important;
+}
+
+#savemypaquet_form span#savemypaquet_info .err {
+  color: #f10b0b;
+  font-size: 12px;
+  ;
+  padding: 6px 10px 6px 40px;
+}
+
+#savemypaquet_form span#savemypaquet_info .success {
+  color: #037d05;
+  font-size: 12px;
+  padding: 6px 10px 6px 40px;
+}

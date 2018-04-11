@@ -1,0 +1,243 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category    Ecomtech
+ * @package     Ecomtech_Savemypaquet
+ * @author      Savemypaquet ( http://www.savemypaquet.com)
+ * @developer   Ahmed MAHI <ahmed@mahi.ma> (http://ahmedmahi.com)
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+-->
+<config>
+  <modules>
+    <Ecomtech_Savemypaquet>
+      <version>1.0.0</version>
+    </Ecomtech_Savemypaquet>
+  </modules>
+  <frontend>
+    <routers>
+      <savemypaquet>
+        <use>standard</use>
+          <args>
+            <module>Ecomtech_Savemypaquet</module>
+            <frontName>savemypaquet</frontName>
+          </args>
+      </savemypaquet>
+    </routers>
+    <translate>
+        <modules>
+            <Mage_Shipping>
+                <files>
+                   <Ecomtech_Savemypaquet>Savemypaquet.csv</Ecomtech_Savemypaquet>
+                </files>
+            </Mage_Shipping>
+        </modules>
+    </translate>
+		<layout>
+		  <updates>
+			<savemypaquet>
+			  <file>savemypaquet.xml</file>
+			</savemypaquet>
+		  </updates>
+		</layout>
+  </frontend>
+  <global>
+    <helpers>
+      <savemypaquet>
+        <class>Ecomtech_Savemypaquet_Helper</class>
+      </savemypaquet>
+    </helpers>
+	<blocks>
+	  <savemypaquet>
+		<class>Ecomtech_Savemypaquet_Block</class>
+	  </savemypaquet>
+	</blocks>
+	<models>
+	  <savemypaquet>
+		<class>Ecomtech_Savemypaquet_Model</class>
+		<resourceModel>savemypaquet_mysql4</resourceModel>
+	  </savemypaquet>
+	  <savemypaquet_mysql4>
+		<class>Ecomtech_Savemypaquet_Model_Mysql4</class>
+		<entities>
+			  <services>
+				<table>savemypaquet_services</table>
+			  </services>
+			  <zones>
+				<table>savemypaquet_zones</table>
+			  </zones>
+			  <fraisport>
+				<table>savemypaquet_frais_port</table>
+			  </fraisport>
+		</entities>
+	  </savemypaquet_mysql4>
+	</models>
+	<resources>
+	  <savemypaquet_setup>
+		<setup>
+		  <module>Ecomtech_Savemypaquet</module>
+		  <class>Mage_Sales_Model_Mysql4_Setup</class>
+		</setup>
+		<connection>
+		  <use>core_setup</use>
+		</connection>
+	  </savemypaquet_setup>
+	  <savemypaquet_write>
+		<connection>
+		  <use>core_write</use>
+		</connection>
+	  </savemypaquet_write>
+	  <savemypaquet_read>
+		<connection>
+		  <use>core_read</use>
+		</connection>
+	  </savemypaquet_read>
+	</resources>
+    <events>
+      	  <core_block_abstract_to_html_before>
+        <observers>
+          <core_block_abstract_to_html_before_handler>
+            <type>model</type>
+            <class>savemypaquet/observer</class>
+            <method>addSavemypaquetElements</method>
+            <args></args>
+          </core_block_abstract_to_html_before_handler>
+        </observers>
+      </core_block_abstract_to_html_before>
+      <controller_action_postdispatch_checkout_onepage_saveShippingMethod>
+             <observers>
+                <controller_action_postdispatch_checkout_onepage_saveShippingMethod_handler>
+                   <type>singleton</type>
+                   <class>savemypaquet/observer</class>
+                    <method>saveInfosSmp</method>
+                </controller_action_postdispatch_checkout_onepage_saveShippingMethod_handler>
+              </observers>
+            </controller_action_postdispatch_checkout_onepage_saveShippingMethod>
+       <checkout_controller_onepage_save_shipping_method>
+            <observers>
+               <checkout_controller_onepage_save_shipping_method_handler>
+                 <type>singleton</type>
+                 <class>savemypaquet/observer</class>
+                 <method>saveInfos</method>
+               </checkout_controller_onepage_save_shipping_method_handler>
+            </observers>
+       </checkout_controller_onepage_save_shipping_method>
+      <checkout_type_onepage_save_order>
+            <observers>
+               <checkout_type_onepage_save_order_handler>
+                 <type>singleton</type>
+                 <class>savemypaquet/observer</class>
+                 <method>saveSelectedInfos</method>
+               </checkout_type_onepage_save_order_handler>
+                </observers>
+       </checkout_type_onepage_save_order>
+    </events>
+  </global>
+  <admin>
+	<routers>
+	  <savemypaquet>
+	    <use>admin</use>
+		<args>
+		  <module>Ecomtech_Savemypaquet</module>
+		  <frontName>admin_savemypaquet</frontName>
+		</args>
+	  </savemypaquet>
+	</routers>
+  </admin>
+  <adminhtml>
+	<menu>
+	  <savemypaquet module="savemypaquet">
+		<title>SaveMyPaquet</title>
+		<sort_order>100</sort_order>
+		<children>
+		  <!--zones module="savemypaquet">
+		    <title>Manage Zones</title>
+			<sort_order>0</sort_order>
+			<action>admin_savemypaquet/adminhtml_zones</action>
+		  </zones-->
+      <config module="savemypaquet">
+      <title>Configuration</title>
+      <sort_order>1</sort_order>
+        <action>adminhtml/system_config/edit/section/carriers/savemypaquet</action>
+      </config>
+		  <services module="savemypaquet">
+		    <title>Types de livraison</title>
+			<sort_order>5</sort_order>
+			<action>admin_savemypaquet/adminhtml_services</action>
+		  </services>
+		  <fraisport module="savemypaquet">
+		    <title>Delivery Fee Management</title>
+			<sort_order>10</sort_order>
+			<action>admin_savemypaquet/adminhtml_fraisport</action>
+		  </fraisport>
+		  <savemypaquetorder module="savemypaquet">
+		    <title>Manage Shipping orders</title>
+			<sort_order>20</sort_order>
+			<action>admin_savemypaquet/adminhtml_orders</action>
+		  </savemypaquetorder>
+		</children>
+	  </savemypaquet>
+	</menu>
+	<acl>
+	  <resources>
+		<all>
+		  <title>Allow Everything</title>
+		</all>
+		<admin>
+		  <children>
+			<savemypaquet translate="title" module="savemypaquet">
+			  <title>Savemypaquet</title>
+			  <sort_order>1000</sort_order>
+			  <children>
+		  <!--zones translate="title">
+			<title>Manage Zones</title>
+			<sort_order>0</sort_order>
+		  </zones-->
+		  <services translate="title">
+			<title>Types de livraison</title>
+			<sort_order>5</sort_order>
+		  </services>
+		  <fraisport translate="title">
+			<title>Manage Fraisport</title>
+			<sort_order>10</sort_order>
+		  </fraisport>
+		  <savemypaquetorder translate="title">
+			<title>Manage orders</title>
+			<sort_order>20</sort_order>
+		  </savemypaquetorder>
+			  </children>
+			</savemypaquet>
+		  </children>
+		</admin>
+	  </resources>
+	</acl>
+	    <translate>
+        <modules>
+            <Mage_Shipping>
+                <files>
+                   <Ecomtech_Savemypaquet>Savemypaquet.csv</Ecomtech_Savemypaquet>
+                </files>
+            </Mage_Shipping>
+        </modules>
+    </translate>
+	<layout>
+	  <updates>
+		<savemypaquet>
+		  <file>savemypaquet.xml</file>
+		</savemypaquet>
+	  </updates>
+	</layout>
+  </adminhtml>
+	<default>
+        <carriers>
+            <savemypaquet>
+                <active>1</active>
+                <model>savemypaquet/carrier_savemypaquet</model>
+                <name>SaveMyPaquet</name>
+                <title>Save My Paquet</title>
+                <description></description>
+                <sort_order>0</sort_order>
+            </savemypaquet>
+        </carriers>
+    </default>
+</config>

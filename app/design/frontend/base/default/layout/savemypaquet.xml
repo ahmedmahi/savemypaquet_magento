@@ -1,0 +1,35 @@
+<?xml version="1.0"?>   
+ <!--
+/**
+ * @category    Ecomtech
+ * @package     Ecomtech_Savemypaquet
+ * @author      Savemypaquet ( http://www.savemypaquet.com)
+ * @developer   Ahmed MAHI <ahmed@mahi.ma> (http://ahmedmahi.com)
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+-->
+<layout version="1.0.0">   
+      <checkout_onepage_index>
+        <reference name="head">
+            <action method="addItem"><type>skin_js</type><script>js/savemypaquet/savemypaquet.js</script></action>
+            <action method="addItem"><type>skin_css</type><name>css/savemypaquet/savemypaquet.css</name><params/></action>
+            <action method="addItem"><type>skin_css</type><name>css/savemypaquet/bootstrap.min.css</name><params/></action>
+        </reference>
+    </checkout_onepage_index>
+          <sales_order_view>
+        <reference name="head">
+            <action method="addItem"><type>skin_js</type><script>js/savemypaquet/comments.js</script></action>
+        </reference>
+    </sales_order_view>
+      <savemypaquet_index_tracer>   
+    <reference name="root">   
+      <action method="setTemplate"><template>page/1column.phtml</template></action>   
+    </reference>   
+    <reference name="content">   
+      <block type="savemypaquet/tracer" name="savemypaquet_tracer" template="savemypaquet/tracer.phtml"/>   
+    </reference>   
+  </savemypaquet_index_tracer>
+    
+
+</layout>   
+	

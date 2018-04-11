@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category    Ecomtech
+ * @package     Ecomtech_Savemypaquet
+ * @author      Savemypaquet ( http://www.savemypaquet.com)
+ * @developer   Ahmed MAHI <ahmed@mahi.ma> (http://ahmedmahi.com)
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+-->
+<layout version="0.1.0">
+  <savemypaquet_adminhtml_zones_index>
+	<reference name="content">
+	  <block type="savemypaquet/adminhtml_zones" name="zones" />
+	</reference>
+  </savemypaquet_adminhtml_zones_index>
+    <savemypaquet_adminhtml_services_index>
+	<reference name="content">
+	  <block type="savemypaquet/adminhtml_services" name="services" />
+	</reference>
+  </savemypaquet_adminhtml_services_index>
+  <savemypaquet_adminhtml_fraisport_index>
+	<reference name="content">
+	  <block type="savemypaquet/adminhtml_fraisport" name="fraisport" />
+	</reference>
+  </savemypaquet_adminhtml_fraisport_index>
+    <savemypaquet_adminhtml_orders_index>
+  	  <reference name="head">
+	  <action method="addJs"><script>savemypaquet/orders.js</script></action>
+	</reference>
+	</savemypaquet_adminhtml_orders_index>
+</layout>
